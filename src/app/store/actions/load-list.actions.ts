@@ -1,0 +1,2 @@
+
+export const LOAD_CHARACTER_LIST = 'LOAD_CHARACTER_LIST';
