@@ -1,3 +1,8 @@
-<p>
-  rick-and-morty-list works!
-</p>
+<!--<pre>{{list$ | async | json}}</pre>-->
+
+<ng-container *ngIf="(list$ | async)">
+<mat-card class="mb-3" *ngFor="let item of (list$ | async)">
+  <div>{{ item.name }}</div>
+  <div>{{ item.gender }}</div>
+</mat-card>
+</ng-container>

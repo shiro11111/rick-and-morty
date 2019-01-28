@@ -1,6 +1,5 @@
 import {Action} from '@ngrx/store';
 import {Character} from '../../models/character';
-import {List} from '../../models/list';
 import {HttpErrorResponse} from '@angular/common/http';
 
 export const LOAD_CHARACTER_LIST = 'LOAD_CHARACTER_LIST';
@@ -13,7 +12,7 @@ export class LoadCharacterList implements Action {
 
 export class LoadCharacterListSuccess implements Action {
   readonly type = LOAD_CHARACTER_LIST_SUCCESS;
-  constructor(public payload: List<Character>) {}
+  constructor(public payload: Character[]) {}
 }
 
 export class LoadCharacterListFail implements Action {
