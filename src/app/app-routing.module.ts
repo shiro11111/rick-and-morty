@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RickAndMortyRoutingModule } from './rick-and-morty/rick-and-morty-routing.module';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'characters', pathMatch: 'full'},

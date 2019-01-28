@@ -19,5 +19,9 @@ export class RickAndMortyService {
       map((res: List<Character>) => res.results)
     );
   }
+
+  loadCharacterDetails(id: number): Observable<Character> {
+    return this.http.get<Character>(`https://rickandmortyapi.com/api/character/${id}`);
+  }
 }
 

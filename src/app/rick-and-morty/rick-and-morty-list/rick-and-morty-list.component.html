@@ -2,7 +2,7 @@
 
 <ng-container *ngIf="(list$ | async)">
 <mat-card class="mb-3" *ngFor="let item of (list$ | async)">
-  <div>{{ item.name }}</div>
+  <div (click)="onNavigateToDetails(item?.id)">{{ item.name }}</div>
   <div>{{ item.gender }}</div>
 </mat-card>
 </ng-container>

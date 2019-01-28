@@ -1,3 +1,9 @@
-<p>
-  rick-and-morty-details works!
-</p>
+<!--<pre>{{details$ | async | json}}</pre>-->
+
+<mat-card>
+  <div>{{(details$ | async)?.name}}</div>
+  <div>{{(details$ | async)?.gender}}</div>
+  <div>{{(details$ | async)?.status}}</div>
+  <div>{{(details$ | async)?.type}}</div>
+  <div>{{(details$ | async)?.created}}</div>
+</mat-card>

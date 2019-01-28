@@ -1,15 +1,15 @@
 import { Character } from '../models/character';
 import { LOAD_CHARACTER_LIST, LOAD_CHARACTER_LIST_FAIL, LOAD_CHARACTER_LIST_SUCCESS, LoadListActions } from './actions/load-list.actions';
 
-export interface CharactersState {
+export interface CharactersListState {
   list: Character[];
 }
 
-const initialState: CharactersState = {
+const initialState: CharactersListState = {
   list: null
 };
 
-export function charactersReducer (state = initialState, action: LoadListActions) {
+export function charactersListReducer (state = initialState, action: LoadListActions) {
   switch (action.type) {
     case LOAD_CHARACTER_LIST:
       return {
@@ -24,5 +24,7 @@ export function charactersReducer (state = initialState, action: LoadListActions
       return {
         ...state
       };
+    default:
+      return state;
   }
 }

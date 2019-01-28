@@ -1,11 +1,17 @@
-import * as fromCharactersState from './rick-and-morty.reducer';
+import * as fromCharactersListState from './rick-and-morty-list.reducer';
+import * as fromCharacterDetailsState from './rick-and-morty-details.reducer';
 import { ActionReducerMap } from '@ngrx/store';
-import { charactersReducer } from './rick-and-morty.reducer';
+import { charactersListReducer } from './rick-and-morty-list.reducer';
+import { characterDetailsReducer } from './rick-and-morty-details.reducer';
+
 
 export interface AppState {
-  charactersState: fromCharactersState.CharactersState;
+  charactersListState: fromCharactersListState.CharactersListState;
+  characterDetailsState: fromCharacterDetailsState.CharacterDetailsState;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
-  charactersState: charactersReducer
+  charactersListState: charactersListReducer,
+  characterDetailsState: characterDetailsReducer
 };
+

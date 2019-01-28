@@ -5,6 +5,8 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 import { Character } from '../models/character';
 import { LoadCharacterListFail, LoadCharacterListSuccess } from './actions/load-list.actions';
 import { of } from 'rxjs';
+import { LoadCharacterDetails, LoadCharacterDetailsFail, LoadCharacterDetailsSuccess } from './actions/load-details.actions';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 export class RickAndMortyEffects {
@@ -18,4 +20,12 @@ export class RickAndMortyEffects {
       map((res: Character[]) => new LoadCharacterListSuccess(res)),
       catchError((error) => of(new LoadCharacterListFail(error)))
     )));
+
+@Effect() loadDetails$ = this.actions$.pipe(
+  ofType('LOAD_CHARACTER_DETAILS'),
+  map((action: LoadCharacterDetails) => action.payload),
+  switchMap((id: number) => this.service.loadCharacterDetails(id).pipe(
+    map((res: Character) => new LoadCharacterDetailsSuccess(res)),
+    catchError((error: HttpErrorResponse) => of(new LoadCharacterDetailsFail(error)))
+  )));
 }
