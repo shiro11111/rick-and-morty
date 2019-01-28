@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Character } from '../../models/character';
 import { Observable } from 'rxjs';
 import { AppState } from '../../store/app.reducers';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { LoadCharacterList } from '../../store/actions/load-list.actions';
 import { map } from 'rxjs/operators';
 import { CharactersListState } from '../../store/rick-and-morty-list.reducer';
 import { ActivatedRoute, Router } from '@angular/router';
+import { getListState } from '../../store/selectors/get-list.selectors';
 
 @Component({
   selector: 'app-rick-and-morty-list',
@@ -25,11 +26,13 @@ export class RickAndMortyListComponent implements OnInit {
 
     this.store.dispatch(new LoadCharacterList());
 
-    this.list$ = this.store.select('charactersListState').pipe(
-      map((state: CharactersListState) => state && state.list));
+    // this.list$ = this.store.select('charactersListState').pipe(
+    //   map((state: CharactersListState) => state && state.list));
+
+    this.list$ = this.store.pipe(select(getListState));
   }
 
   onNavigateToDetails(id: number): void {
-    this.router.navigate([`details/${id}`], {relativeTo: this.route});
+    this.router.navigate([`details/${id}`], { relativeTo: this.route });
   }
 }

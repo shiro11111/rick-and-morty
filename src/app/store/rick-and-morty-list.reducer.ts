@@ -28,3 +28,5 @@ export function charactersListReducer (state = initialState, action: LoadListAct
       return state;
   }
 }
+
+export const getCharacterList = (state: CharactersListState) => state.list;

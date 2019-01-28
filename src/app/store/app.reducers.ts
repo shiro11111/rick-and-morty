@@ -15,3 +15,6 @@ export const reducers: ActionReducerMap<AppState> = {
   characterDetailsState: characterDetailsReducer
 };
 
+export const getCharactersListState = (state: AppState) => state.charactersListState;
+export const getCharacterDetailsState = (state: AppState) => state.characterDetailsState;
+

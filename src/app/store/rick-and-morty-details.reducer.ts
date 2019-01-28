@@ -33,3 +33,5 @@ export function characterDetailsReducer (state = initialState, action: LoadDetai
       return state;
   }
 }
+export const getCharacterDetails = (state: CharacterDetailsState) => state.details;
+
