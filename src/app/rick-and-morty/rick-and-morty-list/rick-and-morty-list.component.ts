@@ -15,7 +15,6 @@ import { getStateOfEntity } from '../../store/entity/entity.selector';
 })
 export class RickAndMortyListComponent implements OnInit {
   list$: Observable<Character[]>;
-  entities$: Observable<{[key: string]: any}>;
 
   constructor(private store: Store<AppState>,
               private router: Router,
@@ -28,7 +27,6 @@ export class RickAndMortyListComponent implements OnInit {
 
     // this.list$ = this.store.select('charactersListState').pipe(
     //   map((state: CharactersListState) => state && state.list));
-    this.entities$ = this.store.pipe(select(getStateOfEntity));
 
     this.list$ = this.store.pipe(select(getCharacterListData));
   }
