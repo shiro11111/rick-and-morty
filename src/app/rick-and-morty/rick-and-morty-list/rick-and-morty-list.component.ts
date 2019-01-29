@@ -4,10 +4,9 @@ import { Observable } from 'rxjs';
 import { AppState } from '../../store/app.reducers';
 import { select, Store } from '@ngrx/store';
 import { LoadCharacterList } from '../../store/actions/load-list.actions';
-import { map } from 'rxjs/operators';
-import { CharactersListState } from '../../store/rick-and-morty-list.reducer';
 import { ActivatedRoute, Router } from '@angular/router';
-import { getListState } from '../../store/selectors/get-list.selectors';
+import { getCharacterListData, getListState } from '../../store/selectors/get-list.selectors';
+import { getStateOfEntity } from '../../store/entity/entity.selector';
 
 @Component({
   selector: 'app-rick-and-morty-list',
@@ -16,6 +15,7 @@ import { getListState } from '../../store/selectors/get-list.selectors';
 })
 export class RickAndMortyListComponent implements OnInit {
   list$: Observable<Character[]>;
+  entities$: Observable<{[key: string]: any}>;
 
   constructor(private store: Store<AppState>,
               private router: Router,
@@ -28,8 +28,9 @@ export class RickAndMortyListComponent implements OnInit {
 
     // this.list$ = this.store.select('charactersListState').pipe(
     //   map((state: CharactersListState) => state && state.list));
+    this.entities$ = this.store.pipe(select(getStateOfEntity));
 
-    this.list$ = this.store.pipe(select(getListState));
+    this.list$ = this.store.pipe(select(getCharacterListData));
   }
 
   onNavigateToDetails(id: number): void {

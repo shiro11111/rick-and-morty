@@ -1,8 +1,7 @@
-import { Character } from '../models/character';
 import { LOAD_CHARACTER_LIST, LOAD_CHARACTER_LIST_FAIL, LOAD_CHARACTER_LIST_SUCCESS, LoadListActions } from './actions/load-list.actions';
 
 export interface CharactersListState {
-  list: Character[];
+  list: number[];
 }
 
 const initialState: CharactersListState = {
@@ -18,7 +17,7 @@ export function charactersListReducer (state = initialState, action: LoadListAct
     case LOAD_CHARACTER_LIST_SUCCESS:
       return {
         ...state,
-        list: action.payload
+        list: action.payload.result
       };
     case LOAD_CHARACTER_LIST_FAIL:
       return {

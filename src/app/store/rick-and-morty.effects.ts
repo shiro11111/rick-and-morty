@@ -7,6 +7,7 @@ import { LoadCharacterListFail, LoadCharacterListSuccess } from './actions/load-
 import { of } from 'rxjs';
 import { LoadCharacterDetails, LoadCharacterDetailsFail, LoadCharacterDetailsSuccess } from './actions/load-details.actions';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NormalizedList } from '../models/normalizedList';
 
 @Injectable()
 export class RickAndMortyEffects {
@@ -17,7 +18,7 @@ export class RickAndMortyEffects {
   @Effect() loadCharacters$ = this.actions$.pipe(
     ofType('LOAD_CHARACTER_LIST'),
     switchMap(() => this.service.loadCharacterList().pipe(
-      map((res: Character[]) => new LoadCharacterListSuccess(res)),
+      map((res: NormalizedList) => new LoadCharacterListSuccess(res)),
       catchError((error) => of(new LoadCharacterListFail(error)))
     )));
 

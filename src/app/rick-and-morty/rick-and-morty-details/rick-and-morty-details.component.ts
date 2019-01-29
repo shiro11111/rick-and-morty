@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AppState } from '../../store/app.reducers';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { Character } from '../../models/character';
 import { ActivatedRoute, Params } from '@angular/router';
 import { LoadCharacterDetails } from '../../store/actions/load-details.actions';
 import { distinctUntilChanged, filter, map, takeUntil } from 'rxjs/operators';
 import { CharacterDetailsState } from '../../store/rick-and-morty-details.reducer';
+import { getDetailsState } from '../../store/selectors/get-details.selectors';
 
 @Component({
   selector: 'app-rick-and-morty-details',
@@ -32,8 +33,10 @@ export class RickAndMortyDetailsComponent implements OnInit {
       this.store.dispatch(new LoadCharacterDetails(id));
     });
 
-    this.details$ = this.store.select('characterDetailsState').pipe(
-      map((state: CharacterDetailsState) => state && state.details));
+    // this.details$ = this.store.select('characterDetailsState').pipe(
+    //   map((state: CharacterDetailsState) => state && state.details));
+
+    this.details$ = this.store.pipe(select(getDetailsState));
   }
 
 }
